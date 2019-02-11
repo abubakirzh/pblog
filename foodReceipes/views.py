@@ -27,3 +27,13 @@ def learn_detail(request, post_id):
         comments_form = CommentIt()
     return render(request, 'learnplus.html', {'learn': food_learn_detail, 'comments': comments,
                                               'comments_form': comments_form})
+
+
+def search_food_learn(request):
+    if request.method == "POST":
+        search_food_learn_start = request.POST['searchFoodLearn']
+        search_food_learn_complete = FoodReceipts.objects.filter(learn_title__contains=search_food_learn_start)
+        return render(request, 'learn.html', {'search_food_learn_complete': search_food_learn_complete,
+                                              'search_food_learn_found': len(search_food_learn_complete)})
+
+    return redirect('/learn/')

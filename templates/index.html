@@ -27,16 +27,24 @@
     </a></div>
     <nav> <a href="{% url 'show_info' %}" title="Some info bout kazakh food">Kazakh traditional food</a> <a href="{% url 'show_receipts' %}" title="GO">Learn how to cook</a></nav>
   </header>
+
   <div id="content">
     <div class="notOnDesktop">
       <!-- This search box is displayed only in mobile and tablet laouts and not in desktop layouts -->
-      <input type="text" placeholder="Search">
+        {% block searchBtnNotOnDesktop %}
+        {% endblock %}
+    {% if user.is_authenticated %}
+        <a href="{% url "logout_user" %}">Log out</a>
+      {% else %}
+        <a href="{% url "login_user" %}">login</a>
+      {% endif %}
+	  <p>{{ user.username }}</p>
     </div>
     <section id="mainContent">
+    {% block blog_content %}
       <!--************************************************************************
     Main Blog content starts here
     ****************************************************************************-->
-    {% block blog_content %}
       <h1><!-- Blog title -->Get started</h1>
       <h3><!-- Tagline -->LEAVE DA PAGE IF U HUNGRY</h3>
       <div id="bannerImage"><img src="http://www.vash-obed.ru/images/doc/38/Title/thumb_c1000x300/img_9442.jpg" alt=""/></div>
@@ -49,12 +57,15 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 -->
       </aside>
+    {% endblock %}
     </section>
+
     <section id="sidebar">
       <!--************************************************************************
     Sidebar starts here. It contains a searchbox, sample ad image and 6 links
     ****************************************************************************-->
-      <input type="text" placeholder="Search">
+    {% block searchBtn %}
+    {% endblock %}
       {% if user.is_authenticated %}
         <a href="{% url "logout_user" %}">Log out</a>
       {% else %}
@@ -66,7 +77,6 @@
       </nav>
       <div id="adimage"><img src="http://10topbet.ru/wp-content/uploads/2015/10/1xbet-300x250.jpg" alt=""/></div>
     </section>
-    {% endblock %}
     {% block footer %}
     <footer>
       <!--************************************************************************

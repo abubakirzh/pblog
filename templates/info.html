@@ -3,8 +3,30 @@
     <title>Kazakh national food info</title>
 {% endblock %}
 {% block blog_content %}
-    {% for info in food_info %}
-        <h3><a href="/info/{{ info.id }}">{{ info.info_title }}</a></h3>
-        <p>{{ info.info_content }}</p>
-    {% endfor %}
+    {% if search_food_info_complete %}
+            <h1>{{ search_food_info_found }} post(s) has been found</h1>
+        {% for info in search_food_info_complete %}
+            <h3><a href="/info/{{ info.id }}">{{ info.info_title }}</a></h3>
+            <p>{{ info.info_content }}</p>
+        {% endfor %}
+    {% else %}
+        {% for info in food_info %}
+            <h3><a href="/info/{{ info.id }}">{{ info.info_title }}</a></h3>
+            <p>{{ info.info_content }}</p>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+{% block searchBtnNotOnDesktop %}
+    <form action="{% url 'search_food_info' %}" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Search" name="searchFoodInfo">
+        <button>GO</button>
+    </form>
+{% endblock %}
+{% block searchBtn %}
+    <form action="{% url 'search_food_info' %}" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Search" name="searchFoodInfo">
+        <button>GO</button>
+    </form>
 {% endblock %}

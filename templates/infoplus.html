@@ -9,14 +9,14 @@
         {% if info.info_image %}
             <img src="{{ info.info_image.url }}" alt="five">
         {% endif %}
-    {% if user.is_authentificated %}
+   {% if user.is_authenticated %}
         <form action="" method="post">
             {% csrf_token %}
             {{ comments_form.as_p }}
             <input type="submit" value="Submit" class="btn btn-outline-success">
         </form>
     {% else %}
-        <p>Log in to write comment</p>
+        <p><a href="{% url 'login_user' %}">Log in </a> to write comment </p>
     {% endif %}
 
     <div class="comments">

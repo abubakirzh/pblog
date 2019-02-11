@@ -3,8 +3,30 @@
     <title>Learn to cook well</title>
 {% endblock %}
 {% block blog_content %}
-    {% for learn in food_learn %}
-        <h3><a href="/learn/{{ learn.id }}">{{ learn.learn_title }}</a></h3>
-        <p>{{ learn.learn_pre_content }}</p>
-    {% endfor %}
+    {% if search_food_learn_complete %}
+            <h1>{{ search_food_learn_found }} receipt(s) has been found</h1>
+        {% for learn in search_food_learn_complete %}
+            <h3><a href="/learn/{{ learn.id }}">{{ learn.learn_title }}</a></h3>
+            <p>{{ learn.learn_pre_content }}</p>
+        {% endfor %}
+    {% else %}
+        {% for learn in food_learn %}
+            <h3><a href="/learn/{{ learn.id }}">{{ learn.learn_title }}</a></h3>
+            <p>{{ learn.learn_pre_content }}</p>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+{% block searchBtnNotOnDesktop %}
+    <form action="{% url 'search_food_learn' %}" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Search" name="searchFoodLearn">
+        <button>GO</button>
+    </form>
+{% endblock %}
+{% block searchBtn %}
+    <form action="{% url 'search_food_learn' %}" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Search" name="searchFoodLearn">
+        <button>GO</button>
+    </form>
 {% endblock %}

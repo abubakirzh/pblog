@@ -30,6 +30,8 @@ urlpatterns = [
     path('info/<int:post_id>/', info_detail, name='info_detail'),
     path('learn/', show_receipts, name="show_receipts"),
     path('learn/<int:post_id>/', learn_detail, name='learn_detail'),
+    path('search', search_food_info, name="search_food_info"),
+    path('searches', search_food_learn, name="search_food_learn"),
 
     path('login/', login_user, name="login_user"),
     path('logout', logout_user, name="logout_user"),

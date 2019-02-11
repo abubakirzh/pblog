@@ -24,3 +24,13 @@ def info_detail(request, post_id):
 
     return render(request, 'infoplus.html', {'info': food_info_detail, 'comments': comments,
                                              'comments_form': comments_form})
+
+
+def search_food_info(request):
+    if request.method == "POST":
+        search_food_info_start = request.POST['searchFoodInfo']
+        search_food_info_complete = FoodInfo.objects.filter(info_title__contains=search_food_info_start)
+        return render(request, 'info.html', {'search_food_info_complete': search_food_info_complete,
+                                              'search_food_info_found': len(search_food_info_complete)})
+
+    return redirect('/info/')
