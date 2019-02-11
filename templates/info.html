@@ -1,0 +1,10 @@
+{%  extends 'index.html' %}
+{% block title %}
+    <title>Kazakh national food info</title>
+{% endblock %}
+{% block blog_content %}
+    {% for info in food_info %}
+        <h3><a href="/info/{{ info.id }}">{{ info.info_title }}</a></h3>
+        <p>{{ info.info_content }}</p>
+    {% endfor %}
+{% endblock %}

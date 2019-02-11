@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block title %}
+    <title>Register</title>
+{% endblock %}
+{% block blog_content %}
+    <div class="right">
+        {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="create_it_block">
+            <form method="post" >
+                {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" name="submit" value="Register" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

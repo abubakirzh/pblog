@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% block title %}
+    <title>Edit profile</title>
+{% endblock %}
+
+
+{% block blog_content %}
+<h2 class="text-center">Edit profile</h2>
+<div class="col-md-6 offset-md-3">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-secondary">Edit profile here</button>
+    </form>
+    <form method="POST" action="{% url 'settings' %}">
+        {% csrf_token %}
+        {{ profile_form.user }}
+        {{ profile_form.phone }}
+        {{ profile_form.image }}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

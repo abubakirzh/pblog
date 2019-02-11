@@ -1,0 +1,10 @@
+{%  extends 'index.html' %}
+{% block title %}
+    <title>Learn to cook well</title>
+{% endblock %}
+{% block blog_content %}
+    {% for learn in food_learn %}
+        <h3><a href="/learn/{{ learn.id }}">{{ learn.learn_title }}</a></h3>
+        <p>{{ learn.learn_pre_content }}</p>
+    {% endfor %}
+{% endblock %}
