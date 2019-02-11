@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block title %}
+    <title>{{ user.username }}</title>
+{% endblock %}
+{% block blog_content %}
+    <h1>Profile</h1>
+    <p>Username: {{ user }}</p>
+    <p>First name: {{ user.first_name }}</p>
+    <p>Last name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    {% if user.userprofile.phone %}
+        <p>Phone: {{ user.userprofile.phone }}</p>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ user_profile.phone }}
+        </form>
+    {% endif %}
+
+    {% if user.userprofile.image %}
+    <img src="{{ user.userprofile.image.url }}" width="240">
+    {% endif %}
+{% endblock %}
+{% block footer %}
+    <footer>baraban</footer>
+{% endblock %}

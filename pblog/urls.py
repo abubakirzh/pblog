@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf.urls import include
+from django.conf.urls import include, url
 
 from foodReceipes.views import *
 from foodInfo.views import *
@@ -33,6 +33,7 @@ urlpatterns = [
     path('search', search_food_info, name="search_food_info"),
     path('searches', search_food_learn, name="search_food_learn"),
 
+    url(r'^profile/(?P<pk>\d+)/$', view_profile, name='view_profile_with_pk'),
     path('login/', login_user, name="login_user"),
     path('logout', logout_user, name="logout_user"),
     path('register', register_user, name="register_user"),

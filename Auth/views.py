@@ -113,3 +113,11 @@ def change_user_profile(request):
 
             return redirect('/')
         return render(request, 'authentication/edit_profile.html', {"profile_form": profile_form})
+
+
+def view_profile(request, pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    return render(request, "user_profile.html", {'user': user})
