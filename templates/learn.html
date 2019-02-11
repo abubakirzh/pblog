@@ -7,7 +7,7 @@
             <h1>{{ search_food_learn_found }} receipt(s) has been found</h1>
         {% for learn in search_food_learn_complete %}
             <h3><a href="/learn/{{ learn.id }}">{{ learn.learn_title }}</a></h3>
-            <p>{{ learn.learn_pre_content }}</p>
+            <pre>{{ learn.learn_pre_content }}</pre>
         {% endfor %}
     {% else %}
         {% for learn in food_learn %}

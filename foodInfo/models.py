@@ -15,5 +15,5 @@ class FoodInfo(models.Model):
 class Comment(models.Model):
     info_post = models.ForeignKey('foodInfo.FoodInfo', on_delete=models.CASCADE, blank=True, null=True)
     info_user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='+')
-    info_comment = models.TextField(max_length=150, null=True)
+    info_comment = models.CharField(max_length=150, null=True)
     info_time = models.DateTimeField(auto_now_add=True, null=True, primary_key=False)
