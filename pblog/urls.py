@@ -39,4 +39,6 @@ urlpatterns = [
     path('register', register_user, name="register_user"),
     path('edit', edit_user_profile, name="edit_user_profile"),
     path('password', change_password, name="change_password"),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
+              static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

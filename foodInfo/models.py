@@ -6,7 +6,7 @@ from django.db import models
 class FoodInfo(models.Model):
     info_title = models.CharField(max_length=100, null=True)
     info_content = models.TextField(max_length=10000, null=True)
-    info_image = models.ImageField(null=True, blank=True, upload_to="book-image")
+    info_image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.info_title
